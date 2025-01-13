@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Playpen+Sans:wght@100..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+/* Style the body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Header/logo Title */
+.header {
+    padding: 9px;
+    text-align: center;
+    background: #404040;
+    color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+    font-size: 40px;
+}
+
+/* Increase the font size of the heading */
+
+.justin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    background: linear-gradient(135deg, #8a1818 50%, #757575 50%);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 85px;
+    height: 85px;
+    margin-right: 15px;
+}
+
+.tagline {
+    font-size: 12px;
+}
+
+.time {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 10% 13% 10% 10% 10%;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    background: #f5f5f5;
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+nav a {
+    display: grid;
+    align-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin: 0 15px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+    #logoutForm, #homeForm {
+        text-align: center;
+    }
+
+        #logoutForm input[type='submit'], #homeForm input[type='submit'] {
+            background: transparent;
+            border: transparent;
+            color: #333;
+            cursor: pointer;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 7px;
+        }
+
+        #logoutForm input[type='submit']:hover, #homeForm input[type='submit']:hover {
+            background: #111;
+            color: #fff;
+        }
+
+.NonC {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.NonC h1 {
+    font-size: 40px;
+}
+
+#applicationReview {
+    display: grid;
+    align-content: center;
+    color: #aaa;
+    font-family: 'Roboto', serif;
+    font-size: 50px;
+    font-weight: bold;
+    height: 59.5vh;
+    text-align: center;
+}
+
+    #cancelApply {
+
+        & input[type='submit'] {
+            background: #e40b0b;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+            height: 7vh;
+            width: 10vw;
+        }
+
+        & input[type='submit']:hover {
+            background: #8a1818;
+        }
+    }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 45px;
+    max-width: 700px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.grid-item {
+    background-color: #808080;
+    height: 150px;
+    width: 300px;
+    border-radius: 8px;
+}
+
+.grid-item button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    height: 150px;
+    width: 300px;
+    padding: 0;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.grid-item p {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+#formMessage {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5vw;
+
+    & #messageTitle {
+        font-family: 'Roboto', serif;
+    }
+
+    & #studentMes {
+        border: 1px solid #aaa;
+        border-radius: 10px;
+        height: 10vw;
+        width: 60vw;
+        padding: 10px;
+        resize: none;
+    }
+
+    & #messageSubmit {
+        position: relative;
+        left: 20vw;
+        background: rgb(1, 149, 1);
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        padding: 15px 0;
+        width: 20vw;
+    }
+
+    & #messageSubmit:hover {
+        background: green;
+    }
+}
+
+/* Footer */
+.footer {
+    padding: 19px;
+    text-align: center;
+    background: #404040;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .row {   
+        flex-direction: column;
+    }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+    .navbar a {
+        float: none;
+        width: 100%;
+    }
+}

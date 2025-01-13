@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TUP ORGANIZATIONS</title>
+        <link rel="icon" type="static/x-icon" href="/static/tup logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Playpen+Sans:wght@100..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static',filename='index.css') }}"/>
+    </head>
+    <body>
+        <div class="header"></div>
+        <div class="justin">
+            <div class="logo">
+                <img src="static/tup logo.png" alt="TUP Logo">
+                <div class="logo-text">
+                    <div class="university-name">TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES</div>
+                    <div class="tagline">SERVING WITH PURE PASSION AND DEDICATION</div>
+                </div>
+            </div>
+
+                <div class="time" id="time-container">
+                    <div>PHILIPPINES STANDARD TIME</div>
+                <div id="current-time"></div>
+            </div>
+        </div>
+        <nav>
+            <a href="#Home">HOME</a>
+            <a href="">UPCOMING EVENTS</a>
+            <a href="#abt"> ABOUT</a>
+            <a href="#nonc">ORGANIZATIONS</a>
+            <form action="/login" id="loginForm">
+                <input type="submit" value="Log In"/>
+            </form>
+        </nav>
+
+        {%with message = get_flashed_messages()%}
+            {%if message%}
+            <div id="err">
+                <div>
+                    Log In With Your TUP Account!
+                </div>
+            </div>
+            {%endif%}
+        {%endwith%}
+
+        <div class="TUPM" id="Home">
+            <img src="static/haizz.png" alt="haizz"> 
+        </div>
+
+        <script>
+            function updateTime() {
+                const timeContainer = document.getElementById('current-time');
+                const now = new Date();
+
+                const options = {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Manila'
+                };
+
+                timeContainer.textContent = now.toLocaleString('en-US', options);
+            }
+
+            setInterval(updateTime, 1000);
+
+            updateTime();
+        </script>
+
+        <div class="NonC" id="nonc">
+            <h1>Non-College Organizations</h1>
+            <div class="grid">
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/BOLTUP.jpg" alt="Org 1">
+                        </button>
+                    </form>
+                    <p>Boluntaryong TUPians</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/CYC.jpg" alt="Org 2">
+                        </button>
+                    </form>
+                    <p>College Y Club</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/DOST.jpg" alt="Org 3">
+                        </button>
+                    </form>
+                    <p>TUPM - DOST Scholars' Club</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/TUPDB.jpg" alt="Org 4">
+                        </button>
+                    </form>
+                    <p>TUP Dugong Bughaw</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/GRAYBOTS.jpg" alt="Org 5">
+                        </button>
+                    </form>
+                    <p>TUP GRAYBOTS</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/GDGC.jpg" alt="Org 6">
+                        </button>
+                    </form>
+                    <p>Google Developer Groups on Campus TUP Manila</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/GEAR.jpg" alt="Org 7">
+                        </button>
+                    </form>
+                    <p>TUP GEAR</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/TUP-IVC.jpg" alt="Org 8">
+                        </button>
+                    </form>
+                    <p>TUP - IVC</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/RCY.jpg" alt="Org 9">
+                        </button>
+                    </form>
+                    <p>TUP Manila Red Cross Youth</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/SMERS.jpg" alt="Org 10">
+                        </button>
+                    </form>
+                    <p>SMERS</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/TUP TG.jpg" alt="Org 11">
+                        </button>
+                    </form>
+                    <p>TUP Tech Guild</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/OSESH.jpg" alt="Org 12">
+                        </button>
+                    </form>
+                    <p>OSESH</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/SULONG.jpg" alt="Org 13">
+                        </button>
+                    </form>
+                    <p>Sulong TUP</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/YEGAD.jpg" alt="Org 14">
+                        </button>
+                    </form>
+                    <p>Youth Empowering Gender and Development</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/KPL-TUP.jpg" alt="Org 15">
+                        </button>
+                    </form>
+                    <p>KPL - TUP</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/PUSA.jpg" alt="Org 16">
+                        </button>
+                    </form>
+                    <p>TUP ComPAWnion</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/login">
+                        <button type="submit">
+                            <img src="static/Orgs/WBCCP.jpg" alt="Org 17">
+                        </button>
+                    </form>
+                    <p>World Book Crossing Club - Philippines</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="abt-section" id="abt">
+            <h1>About Us</h1>
+                <p>
+                    Welcome! This website allows students to have the freedom 
+                    to choose which organizations they want to join based on their 
+                    interests and desire to explore new opportunities. As students, 
+                    we all go through the stages of being freshmen, sophomores, 
+                    juniors, and seniors. At first, we may be unfamiliar with the 
+                    organizations in our university, but as we get older, it is too 
+                    late to join organizations because of our workloads and 
+                    personal stuff.
+                </p>
+                <p>
+                    We are students from the Computer Engineering Technology 
+                    program, and we’ve created a website to help you explore 
+                    various non-college organizations you can join. The website 
+                    provides a list of organizations, along with their respective 
+                    president and the projects they have completed. You can 
+                    browse through the organizations that interest you and find 
+                    details about membership opportunities, including joining 
+                    dates and interview schedules.
+                </p>
+                <div class="team">
+                    <div class="member">
+                        <img src="static/Developers/Malimpenet.jpg" alt="Member 1">
+                        <h3>Sean EJ Malimpenet</h3>
+                        <p>Website Developer</p>
+                    </div>
+            
+                    <div class="member">
+                        <img src="static/Developers/Umadhay.jpg" alt="Member 2">
+                        <h3>Kristofer Umadhay</h3>
+                        <p>Website Developer</p>
+                    </div>
+            
+                    <div class="member">
+                        <img src="static/Developers/Gatus.jpg" alt="Member 3">
+                        <h3>Axel Dominick Gatus</h3>
+                        <p>Website Developer</p>
+                    </div>
+            
+                    <div class="member">
+                        <img src="static/Developers/TRIA.jpg" alt="Member 4">
+                        <h3>Ronald Jefferson Tria</h3>
+                        <p>Website Developer</p>
+                    </div>
+
+                    <div class="member">
+                        <img src="static/Developers/Tillo.jfif" alt="Member 5">
+                        <h3>Justin Jan Tillo</h3>
+                        <p>Website Developer</p>
+                    </div>
+                </div>
+        </div>
+
+        <div class="footer"></div>
+        <!--{{carousel | safe}}-->
+    </body>           
+</html>

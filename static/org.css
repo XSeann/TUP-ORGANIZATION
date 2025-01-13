@@ -1,0 +1,266 @@
+
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+/* Style the body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Header/logo Title */
+.header {
+    padding: 9px;
+    text-align: center;
+    background: #404040;
+    color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+    font-size: 40px;
+}
+
+.justin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    background: linear-gradient(135deg, #8a1818 50%, #757575 50%);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 85px;
+    height: 85px;
+    margin-right: 15px; 
+}
+
+.tagline {
+    font-size: 12px;
+}
+
+.time {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 10% 13% 10% 10% 10%;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    background: #f5f5f5;
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+nav a {
+    display: grid;
+    align-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin: 0 15px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#logoutForm, #homeForm {
+    text-align: center;
+}
+
+    #logoutForm input[type='submit'], #homeForm input[type='submit'] {
+        background: transparent;
+        border: transparent;
+        color: #333;
+        cursor: pointer;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 7px;
+    }
+
+    #logoutForm input[type='submit']:hover, #homeForm input[type='submit']:hover {
+        background: #111;
+        color: #fff;
+    }
+
+
+.conts {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.head {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.head h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.GP img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.pres-info {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pres-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.pres-info div {
+    font-size: 16px;
+}
+
+.section {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.section h1 {
+    margin-bottom: 30px;
+}
+
+.vision-mision {
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.section h2 {
+   margin-top: 0;
+}
+
+.section p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.section .placeholder {
+    background-color: #d0d0d0;
+    height: 250px;
+    border-radius: 8px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+    font-size: 28px;
+    color: #333366;
+}
+.container h2 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.content p {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+}
+
+.image-container {
+    position: relative;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+
+/* Footer */
+.footer {
+    padding: 19px;
+    text-align: center;
+    background: #404040;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .row {   
+        flex-direction: column;
+    }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+    .navbar a {
+        float: none;
+        width: 100%;
+    }
+}
+
+#applyForm {
+position: relative;
+left: 40vw;
+margin-bottom: 30px;
+}
+
+#applyForm button {
+    background: rgb(1, 149, 1);
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    padding: 15px 0;
+    width: 20vw;
+}
+
+#applyForm button:hover {
+    background: green;
+}

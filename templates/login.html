@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TUP ORGANIZATION</title>
+        <link rel="icon" type="image/x-icon" href="/static/tup logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Playpen+Sans:wght@100..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static',filename='login.css') }}"/>
+    </head>
+    <body>
+        <div id="loginPage" class="grid">
+            <form action="/auth" method="post" id="emailForm">
+                <h1 id="loginTitle">LOG IN</h1>
+                <label for="email" id="loginEmailLbl">TUP Email</label>
+                <input type="email" name="email" placeholder="Write Your TUP Email Here..." id="email"/>
+                <input type="submit" id="emailSubmit" value="Log In"/>
+                <div id="emailIcon"><div></div></div>
+            </form>
+            <div id="blurBG"></div>
+        </div>
+        <!--{{carousel | safe}}-->
+    </body>           
+</html>

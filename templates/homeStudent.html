@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TUP ORGANIZATION</title>
+        <link rel="icon" type="image/x-icon" href="/static/tup logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Playpen+Sans:wght@100..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static',filename='homeStudent.css') }}"/>
+        {%if withOrg == True%}
+        <link rel="stylesheet" href="{{url_for('static', filename='org.css')}}"/>
+        {%endif%}
+    </head>
+    <body>
+        {%if withOrg == False%}
+        <div class="header"></div>
+        <div class="justin">
+            <div class="logo">
+                <img src="static/tup logo.png" alt="TUP Logo">
+                <div class="logo-text">
+                    <div class="university-name">TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES</div>
+                    <div class="tagline">SERVING WITH PURE PASSION AND DEDICATION</div>
+                </div>
+            </div>
+
+                <div class="time" id="time-container">
+                    <div>PHILIPPINES STANDARD TIME</div>
+                <div id="current-time"></div>
+            </div>
+        </div>
+        <nav>
+            <form action="/home" id="homeForm">
+                <input type="submit" value="Home"/>
+            </form>
+            <a href="">UPCOMING EVENTS</a>
+            <a href="#abt"> ABOUT</a>
+            <a href="#nonc">ORGANIZATIONS</a>
+            <form action="/logout" id="logoutForm">
+                <input type="submit" value="Log Out"/>
+            </form>
+        </nav>
+
+        <script>
+            function updateTime() {
+                const timeContainer = document.getElementById('current-time');
+                const now = new Date();
+
+                const options = {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Manila'
+                };
+
+                timeContainer.textContent = now.toLocaleString('en-US', options);
+            }
+
+            setInterval(updateTime, 1000);
+
+            updateTime();
+        </script>
+
+        <div class="NonC">
+            <h1>Non-College Organizations</h1>
+            <div class="grid">
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="BOLTUP">
+                            <img src="static/Orgs/BOLTUP.jpg" alt="Org 1">
+                        </button>
+                    </form>
+                    <p>Boluntaryong TUPians</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="CYC">
+                            <img src="static/Orgs/CYC.jpg" alt="Org 2">
+                        </button>
+                    </form>
+                    <p>College Y Club</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPDOST">
+                            <img src="static/Orgs/DOST.jpg" alt="Org 3">
+                        </button>
+                    </form>
+                    <p>TUPM - DOST Scholars' Club</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPDB">
+                            <img src="static/Orgs/TUPDB.jpg" alt="Org 4">
+                        </button>
+                    </form>
+                    <p>TUP Dugong Bughaw</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPGB">
+                            <img src="static/Orgs/GRAYBOTS.jpg" alt="Org 5">
+                        </button>
+                    </form>
+                    <p>TUP GRAYBOTS</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="GDG">
+                            <img src="static/Orgs/GDGC.jpg" alt="Org 6">
+                        </button>
+                    </form>
+                    <p>Google Developer Groups on Campus TUP Manila</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPGEAR">
+                            <img src="static/Orgs/GEAR.jpg" alt="Org 7">
+                        </button>
+                    </form>
+                    <p>TUP GEAR</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPIVC">
+                            <img src="static/Orgs/TUP-IVC.jpg" alt="Org 8">
+                        </button>
+                    </form>
+                    <p>TUP - IVC</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPMRC">
+                            <img src="static/Orgs/RCY.jpg" alt="Org 9">
+                        </button>
+                    </form>
+                    <p>TUP Manila Red Cross Youth</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="SMERS">
+                            <img src="static/Orgs/SMERS.jpg" alt="Org 10">
+                        </button>
+                    </form>
+                    <p>SMERS</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPTG">
+                            <img src="static/Orgs/TUP TG.jpg" alt="Org 11">
+                        </button>
+                    </form>
+                    <p>TUP Tech Guild</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="OSESH">
+                            <img src="static/Orgs/OSESH.jpg" alt="Org 12">
+                        </button>
+                    </form>
+                    <p>OSESH</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="STUP">
+                            <img src="static/Orgs/SULONG.jpg" alt="Org 13">
+                        </button>
+                    </form>
+                    <p>Sulong TUP</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="YEGD">
+                            <img src="static/Orgs/YEGAD.jpg" alt="Org 14">
+                        </button>
+                    </form>
+                    <p>Youth Empowering Gender and Development</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="KPL">
+                            <img src="static/Orgs/KPL-TUP.jpg" alt="Org 15">
+                        </button>
+                    </form>
+                    <p>KPL - TUP</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="TUPPAW">
+                            <img src="static/Orgs/PUSA.jpg" alt="Org 16">
+                        </button>
+                    </form>
+                    <p>TUP ComPAWnion</p>
+                </div>
+
+                <div class="grid-item">
+                    <form action="/org" method="post">
+                        <button type="submit" name="orgType" value="WBCC">
+                            <img src="static/Orgs/WBCCP.jpg" alt="Org 17">
+                        </button>
+                    </form>
+                    <p>World Book Crossing Club - Philippines</p>
+                </div>
+
+            </div>
+        </div>
+        {%endif%}
+
+        {%if inQueue == True%}
+        <div class="header"></div>
+        <div class="justin">
+            <div class="logo">
+                <img src="static/tup logo.png" alt="TUP Logo">
+                <div class="logo-text">
+                    <div class="university-name">TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES</div>
+                    <div class="tagline">SERVING WITH PURE PASSION AND DEDICATION</div>
+                </div>
+            </div>
+
+                <div class="time" id="time-container">
+                    <div>PHILIPPINES STANDARD TIME</div>
+                <div id="current-time"></div>
+            </div>
+        </div>
+        <nav>
+            <form action="/home" id="homeForm">
+                <input type="submit" value="Home"/>
+            </form>
+            <a href="">UPCOMING EVENTS</a>
+            <a href="#abt"> ABOUT</a>
+            <a href="#nonc">ORGANIZATIONS</a>
+            <form action="/logout" id="logoutForm">
+                <input type="submit" value="Log Out"/>
+            </form>
+        </nav>
+
+        <script>
+            function updateTime() {
+                const timeContainer = document.getElementById('current-time');
+                const now = new Date();
+
+                const options = {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Manila'
+                };
+
+                timeContainer.textContent = now.toLocaleString('en-US', options);
+            }
+
+            setInterval(updateTime, 1000);
+
+            updateTime();
+        </script>
+
+        <div class="NonC">
+            <div id="applicationReview">
+                <div>Your Application is Being Reviewed. <br> Please Wait for Being Accepted...</div>
+                <form action="/cancel" id="cancelApply">
+                    <input type="submit" value="Cancel"/>
+                </form>
+            </div>
+        </div>
+        {%endif%}
+
+        {%if withOrg == True%}
+        {{org | safe}}
+        <form action="/sendMes" method="post" id="formMessage">
+            <h1 id="messageTitle">Message Admin</h1>
+            <textarea id="studentMes" name="mesToAdmin" placeholder="Write Your Concerns In Here..."></textarea>
+            <input id="messageSubmit" type="submit"/>
+        </form>
+        {%endif%}
+        <div class="footer"></div>
+        
+        <!--{{carousel | safe}}
+-->
+    </body>           
+</html>

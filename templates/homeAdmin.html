@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TUP ORGANIZATION</title>
+        <link rel="icon" type="image/x-icon" href="/static/tup logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Playpen+Sans:wght@100..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static',filename='homeAdmin.css') }}"/>
+    </head>
+    <body>
+        <div class="header"></div>
+        <div class="justin">
+            <div class="logo">
+                <img src="static/tup logo.png" alt="TUP Logo">
+                <div class="logo-text">
+                    <div class="university-name">TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES</div>
+                    <div class="tagline">SERVING WITH PURE PASSION AND DEDICATION</div>
+                </div>
+            </div>
+
+                <div class="time" id="time-container">
+                    <div>PHILIPPINES STANDARD TIME</div>
+                <div id="current-time"></div>
+            </div>
+        </div>
+        <nav>
+            <form action="/home" id="homeForm">
+                <input type="submit" value="Home"/>
+            </form>
+            <a href="">UPCOMING EVENTS</a>
+            <a href="#abt"> ABOUT</a>
+            <a href="#nonc">ORGANIZATIONS</a>
+            <form action="/logout" id="logoutForm">
+                <input type="submit" value="Log Out"/>
+            </form>
+        </nav>
+
+        <script>
+            function updateTime() {
+                const timeContainer = document.getElementById('current-time');
+                const now = new Date();
+
+                const options = {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Manila'
+                };
+
+                timeContainer.textContent = now.toLocaleString('en-US', options);
+            }
+
+            setInterval(updateTime, 1000);
+
+            updateTime();
+        </script>
+
+        <h1 id="applicants">Applicants</h1>
+        <div id="homeAdminPageApplying">
+            {%if applicantsLength == 0%}
+                <div id="noApplicants">No Applicants...</div>
+            {%endif%}
+            <div id="studentApplicantsCarousel"></div>
+                {%for d in apply%}
+                <div class="inlineBox">
+                    <div class="studentApplyBox">
+                        {%if d['Sex'] == 'Male'%}
+                        <div id="profPicMale">
+                            <div id="head"></div>
+                            <div id="body"></div>
+                        </div>
+                        {%endif%}
+                        {%if d['Sex'] == 'Female'%}
+                        <div id="profPicFemale">
+                            <div id="head"></div>
+                            <div id="body"></div>
+                            <div id="hair"></div>
+                            <div id="hairline"></div>
+                        </div>
+                        {%endif%}
+                        <div id="fullname">{{d['Firstname']}} {{d['Surname']}}</div>
+                        <div id="email">{{d['email']}}</div>
+                        <div id="studNo">{{d['Student No.']}}</div>
+                        {%if d['email'] == apply[0]['email']%}
+                        <form action="/apply" method="post" id="formApprove">
+                            <input type="submit" name="approve" value="Approve"/>
+                            <input type="submit" name="deny" value="Deny"/>
+                        </form>
+                        {%endif%}
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+        <h1 id="members">Members</h1>
+        <form action="/sort" id="formSorter"><input type="submit" value="Sort"/></form>
+        <div id="homeAdminPageMembers" class="grid">
+            {%if membersLength == 0%}
+                <div id="noMembers">No Members...</div>
+            {%endif%}
+            <div id="studentMembersCarousel">
+                {%for d in member%}
+                <div class="inlineBox">
+                    <div class="studentMemBox">
+                        {%if d['Sex'] == 'Male'%}
+                        <div id="profPicMale">
+                            <div id="head"></div>
+                            <div id="body"></div>
+                        </div>
+                        {%endif%}
+                        {%if d['Sex'] == 'Female'%}
+                        <div id="profPicFemale">
+                            <div id="head"></div>
+                            <div id="body"></div>
+                            <div id="hair"></div>
+                            <div id="hairline"></div>
+                        </div>
+                        {%endif%}
+                        <div id="fullname">{{d['Firstname']}} {{d['Surname']}}</div>
+                        <div id="email">{{d['email']}}</div>
+                        <div id="studNo">{{d['Student No.']}}</div>
+                        <form action="/remove" method="post" id="formRemoveUser">
+                            <input id="invisible" type="text" name="removeUser" value="{{d['email']}}"/>
+                            <input type="submit" value="Remove"/>
+                        </form>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+        <h1 id="messages">Messages</h1>
+        <div id="homeAdminPageMessages" class="grid">
+            {%if messagesLength == 0%}
+                <div id="noMessage">No Messages...</div>
+            {%endif%}
+            <div id="studentMessagesCarousel">
+                {%for mes in messages%}
+                <div class="inlineBox">
+                    <div class="studentMessageCard">
+                        <div id="fullname">{{mes['Firstname']}} {{mes['Surname']}}</div>
+                        <div id="email">{{mes['email']}}</div>
+                        <div id="studNo">{{mes['Student No.']}}</div>
+                        <div id="studMessage">{{mes['mes']}}</div>
+                        {%if mes['email'] == messages[0]['email']%}
+                        <form action="/removeMes" method="post" id="formMes">
+                            <input type="submit" name="remove" value="Remove"/>
+                        </form>
+                        {%endif%}
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+        <div class="footer"></div>
+        <!--{{carousel | safe}}-->
+    </body>           
+</html>
