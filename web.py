@@ -2,37 +2,52 @@ from flask import url_for, redirect, render_template, Flask, flash, request
 import orgCollection
 import db
 
-app = Flask(__name__)
+app = Flask(__name__) # New Flask Application
 
-app.secret_key = 'hahaha'
+app.secret_key = 'hahaha' # Flask App Secret Key
 
-ORG_LISTS = ['BOLTUP', 'CYC', 'GDG', 'KPL', 'OSESH', 'SMERS', 'STUP', 'TUPIVC', 'TUPPAW', 'TUPDB', 'TUPGEAR', 'TUPGB', 'TUPMRC', 'TUPTG', 'TUPDOST', 'WBCC', 'YEGD']
+ORG_LISTS =     [   
+                    'BOLTUP', 'CYC', 'GDG', 'KPL', 'OSESH', 'SMERS', 'STUP', 'TUPIVC', 'TUPPAW', 'TUPDB', 'TUPGEAR', 'TUPGB', 'TUPMRC', 'TUPTG', 
+                    'TUPDOST', 'WBCC', 'YEGD'
+                ] # All Organization List
 
-LinkedOrgs = [db.boltup_linked, db.cyc_linked, db.gdg_linked, db.kpl_linked, db.osesh_linked, db.smers_linked, db.stup_linked, db.tupivc_linked, db.tuppaw_linked, db.tupdb_linked, db.tupgear_linked, db.tupgb_linked, db.tupmrc_linked, db.tuptg_linked, db.tupdost_linked, db.wbcc_linked, db.yegd_linked]
+LinkedOrgs =    [   
+                    db.boltup_linked, db.cyc_linked, db.gdg_linked, db.kpl_linked, db.osesh_linked, db.smers_linked, db.stup_linked, db.tupivc_linked, 
+                    db.tuppaw_linked, db.tupdb_linked, db.tupgear_linked, db.tupgb_linked, db.tupmrc_linked, db.tuptg_linked, db.tupdost_linked, 
+                    db.wbcc_linked, db.yegd_linked
+                ] # All Organization Linked List
 
-LinkedOrgMemCollection = [db.boltup_members, db.cyc_members, db.gdg_members, db.kpl_members, db.osesh_members, db.smers_members, db.stup_members, db.tupivc_members, db.tuppaw_members, db.tupdb_members, db.tupgear_members, db.tupgb_members, db.tupmrc_members, db.tuptg_members, db.tupdost_members, db.wbcc_members, db.yegd_members]
+LinkedOrgMemCollection =    [   
+                                db.boltup_members, db.cyc_members, db.gdg_members, db.kpl_members, db.osesh_members, db.smers_members, db.stup_members, 
+                                db.tupivc_members, db.tuppaw_members, db.tupdb_members, db.tupgear_members, db.tupgb_members, db.tupmrc_members, 
+                                db.tuptg_members, db.tupdost_members, db.wbcc_members, db.yegd_members
+                            ] # All Organization Members Linked List
 
-OrgPageTemplate = [orgCollection.BOLTUP, orgCollection.CYC, orgCollection.GDG, orgCollection.KPL, orgCollection.OSESH, orgCollection.SMERS, orgCollection.STUP, orgCollection.TUPIVC, orgCollection.TUPPAW, orgCollection.TUPDB, orgCollection.TUPGEAR, orgCollection.TUPGB, orgCollection.TUPMRC, orgCollection.TUPTG, orgCollection.TUPDOST, orgCollection.WBCC, orgCollection.YEGD]
+OrgPageTemplate =   [   orgCollection.BOLTUP, orgCollection.CYC, orgCollection.GDG, orgCollection.KPL, orgCollection.OSESH, orgCollection.SMERS, 
+                        orgCollection.STUP, orgCollection.TUPIVC, orgCollection.TUPPAW, orgCollection.TUPDB, orgCollection.TUPGEAR, orgCollection.TUPGB, 
+                        orgCollection.TUPMRC, orgCollection.TUPTG, orgCollection.TUPDOST, orgCollection.WBCC, orgCollection.YEGD
+                    ] # All Organization Page Template
 
-tup_admin = ['boltup@tup.edu.ph', 'cyc@tup.edu.ph', 'gdg@tup.edu.ph', 'kpl@tup.edu.ph', 'osesh@tup.edu.ph', 'smers@tup.edu.ph', 'stup@tup.edu.ph'
-             , 'tupivc@tup.edu.ph', 'tuppaw@tup.edu.ph', 'tupdb@tup.edu.ph', 'tupgear@tup.edu.ph', 'tupgb@tup.edu.ph', 'tupmrc@tup.edu.ph', 'tuptg@tup.edu.ph'
-             , 'tupdost@tup.edu.ph', 'wbcc@tup.edu.ph', 'yegd@tup.edu.ph'] # TUP Admin that will review TUP Student Applications
+tup_admin =     [   'boltup@tup.edu.ph', 'cyc@tup.edu.ph', 'gdg@tup.edu.ph', 'kpl@tup.edu.ph', 'osesh@tup.edu.ph', 'smers@tup.edu.ph', 'stup@tup.edu.ph', 
+                    'tupivc@tup.edu.ph', 'tuppaw@tup.edu.ph', 'tupdb@tup.edu.ph', 'tupgear@tup.edu.ph', 'tupgb@tup.edu.ph', 'tupmrc@tup.edu.ph', 
+                    'tuptg@tup.edu.ph', 'tupdost@tup.edu.ph', 'wbcc@tup.edu.ph', 'yegd@tup.edu.ph'
+                ] # All TUP Admin
 
 tup_log = '' # TUP Email that tried to Log In
 
 tup_stud_info = {} # TUP Student Info After Authentication
 
-tup_auth_admin = False
+tup_auth_admin = False # TUP Authenticating An Admin
 
-tup_auth_stud = False
+tup_auth_stud = False # TUP Authenticating A Student
 
-tup_err = False
+tup_err = False # TUP Account Login Error
 
 approve = '' # TUP Admin approved the application for organization
 
 deny = '' # TUP Admin denied the application for organization
 
-class Stack:
+class Stack: # All Organization Message Stacks
     def __init__(self):
         self.ORG_STACKS = []
         # TUP Students Messages that will be stored on their respective Organization
@@ -69,13 +84,14 @@ class Stack:
 # Create a stack
 myStack = Stack()
 
+# Stacking New Message Example
 myStack.push({'email': 'jana.domingo@tup.edu.ph', 'Student No.' : 'TUPM-23-2024', 'Surname' : 'Domingo', 'Firstname' : 'Jana', 'Sex' : 'Female', 'Year' : '1', 'org': 'BOLTUP', 'mes': 'Hello HelloHelloHelloHelloHello Hello Hello Hello HelloHelloHello Hello Hello Hello Hello Hello HelloHelloHelloHelloHello Hello Hello Hello HelloHelloHello Hello Hello Hello Hello Hello HelloHelloHelloHelloHello Hello Hello Hello HelloHelloHello Hello Hello Hello Hello Hello'})
 myStack.push({'email': 'piolo.cruz@tup.edu.ph', 'Student No.' : 'TUPM-23-2025', 'Surname' : 'Cruz', 'Firstname' : 'Piolo', 'Sex' : 'Male', 'Year' : '1', 'org': 'CYC', 'mes': 'jasjbjabd'})
 myStack.push({'email': 'billy.rolex@tup.edu.ph', 'Student No.' : 'TUPM-23-2026', 'Surname' : 'Rolex', 'Firstname' : 'Billy', 'Sex' : 'Male', 'Year' : '1', 'org': 'TUPPAW', 'mes': 'kanslknkanksdl'})
 myStack.push({'email': 'nathan.reyes@tup.edu.ph', 'Student No.' : 'TUPM-23-2027', 'Surname' : 'Reyes', 'Firstname' : 'Nathan', 'Sex' : 'Male', 'Year' : '1', 'org': 'BOLTUP', 'mes': 'Hi'})
 myStack.push({'email': 'nina.sawyer@tup.edu.ph', 'Student No.' : 'TUPM-23-2028', 'Surname' : 'Sawyer', 'Firstname' : 'Nina', 'Sex' : 'Female', 'Year' : '1', 'org': 'TUPIVC', 'mes': 'zxocozxckkj'})
 
-class Queue:
+class Queue: # All Organization Applicant Queues
     def __init__(self):
         self.ORG_QUEUES = []
         for pos in range(len(ORG_LISTS)):
@@ -112,16 +128,19 @@ class Queue:
 # Create a queue
 myQueue = Queue()
 
-#myQueue.enqueue({'email': 'sam.perez@tup.edu.ph', 'Student No.' : 'TUPM-23-2020', 'Surname' : 'Perez', 'Firstname' : 'Sam', 'Sex' : 'Male', 'Year' : '1', 'org': 'TUPTG'})
+# Enqueueing New Applicant Example
+myQueue.enqueue({'email': 'sam.perez@tup.edu.ph', 'Student No.' : 'TUPM-23-2020', 'Surname' : 'Perez', 'Firstname' : 'Sam', 'Sex' : 'Male', 'Year' : '1', 'org': 'TUPTG'})
 myQueue.enqueue({'email': 'jane.munoz@tup.edu.ph', 'Student No.' : 'TUPM-23-2021', 'Surname' : 'Munoz', 'Firstname' : 'Jane', 'Sex' : 'Female', 'Year' : '1', 'org': 'CYC'})
 myQueue.enqueue({'email': 'luis.pascual@tup.edu.ph', 'Student No.' : 'TUPM-23-2018', 'Surname' : 'Pascual', 'Firstname' : 'Luis', 'Sex' : 'Male', 'Year' : '1', 'org': 'GDG'})
 myQueue.enqueue({'email': 'aaron.valdez@tup.edu.ph', 'Student No.' : 'TUPM-23-2000', 'Surname' : 'Valdez', 'Firstname' : 'Aaron', 'Sex' : 'Male', 'Year' : '1', 'org': 'BOLTUP'})
 myQueue.enqueue({'email': 'maria.dalisay@tup.edu.ph', 'Student No.' : 'TUPM-23-2050', 'Surname' : 'Dalisay', 'Firstname' : 'Maria', 'Sex' : 'Female', 'Year' : '1', 'org': 'BOLTUP'})
 
 
+# Inserted New Member Example
 newMem = db.boltup_linked({'email': 'john.doe@tup.edu.ph', 'Student No.' : 'TUPM-23-0000', 'Surname' : 'Doe', 'Firstname' : 'John', 'Sex' : 'Male', 'Year' : '1', 'org' : 'BOLTUP'}) # 
 db.insertNodeAtPosition(db.boltup_members['mem'], newMem, db.count_nodes(db.boltup_members['mem'])-1)
 
+# For Front Page Rendering
 @app.route('/')
 def index():
     global tup_err
@@ -132,6 +151,7 @@ def index():
 
     return render_template('index.html')
 
+# For Different Organization Template
 @app.route('/org', methods=['POST'])
 def org():
 
@@ -147,6 +167,7 @@ def org():
     
     return redirect('/home')
 
+# For Login Form
 @app.route('/login')
 def login():
     global tup_auth_admin, tup_auth_stud
@@ -155,6 +176,7 @@ def login():
         return render_template('login.html')
     return redirect('/home')
 
+# For Account Authentication
 @app.route('/auth', methods=['POST'])
 def auth():
     global tup_log, tup_auth_admin, tup_auth_stud, tup_err, tup_stud_info
@@ -177,6 +199,7 @@ def auth():
     
     return redirect('/') 
 
+# For Admin Home. For Student Home
 @app.route('/home')
 def home():
     global tup_log, tup_auth_admin, tup_auth_stud
@@ -213,6 +236,7 @@ def home():
     
     return redirect('/')
 
+# For Admin Approving or Denying An Applicant. For Student who Is Applying
 @app.route('/apply', methods=['POST'])
 def apply():
     global tup_auth_stud, tup_stud_info, approve, deny
@@ -245,6 +269,7 @@ def apply():
         
     return redirect('/home')
 
+# For Admin Removing Existing Member
 @app.route('/remove', methods=['POST'])
 def remove():
     global tup_auth_admin
@@ -302,12 +327,13 @@ def removeMes():
         
     return redirect('/home')
 
+# For Admin Sorting Members Alphabetically
 @app.route('/sort')
 def sort():
     global tup_auth_admin
 
     def insertionSort(arr):
-        #Insertion Sort
+        # Insertion Sort
         for pos in range(len(arr)):
             for pos2 in range(pos):
                 if arr[pos]['Surname'] < arr[pos2]['Surname']:
@@ -320,7 +346,7 @@ def sort():
             currentNode.data = data[pos]
             currentNode = currentNode.next
     
-    #Sort By Surname A-Z
+    # Sort By Surname A-Z
     if tup_auth_admin == True:
         for pos in range(len(ORG_LISTS)):
             if tup_log == tup_admin[pos]:
@@ -331,6 +357,7 @@ def sort():
 
     return redirect('/home')
 
+# For Canceling Application
 @app.route('/cancel')
 def cancel():
     global tup_log, tup_auth_stud
